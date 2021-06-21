@@ -34,19 +34,56 @@ function countW() {
     
   document.querySelector('#total').innerHTML = ( numeroPalabras + tP);
  }
+
+
+
+ //palindromo
+
+ function frasePalindromo(){
+        fraseUser = document.getElementById("pali").value;
+        // Paso la fraseUser a minusculas y quito espacios
+      fraseUser=fraseUser.replace(/\s/g,"");
+      /* Creo otra frase partiendo de la de userFrase pero
+      la convierto en array, le doy la vuelta al array, lo paso a string*/
+      fraserReverse=fraseUser.split("").reverse().toString();
+      // Le quito las "," con un remplace dentro del for
+      // Lo igualo a -1 ya que tiene una coma menos que el número total de letras
+      for (var i = 0; i < ((fraserReverse.length)-1); i++) {
+        fraserReverse=fraserReverse.replace(",","");
+      };
+      // Comparo las dos frases.
+      if(fraseUser==fraserReverse){
+        // Si el resultado es positivo
+        resultado="es un Palindromo";
+      }
+      else{
+        // Si el resultado es negativo
+        resultado="no es un Palindromo";
+      }
+      // Muestro el el resultado
+      document.querySelector('#res').innerHTML = "Tu frase "+resultado;
+      
+    }
+    // Llamo a la función comparación con el parámetro del user
+ 
+
 </script>
 
 </head>
 <body>
-<h1>Contar  palabras</h1>
+<h1>Contar palabras y palindromo</h1>
 
 
+<FORM ID="formulario" ACTION="#">
+<input type="text"  ID="frase"  ><BR>
+<INPUT TYPE="button" VALUE="Contar las palabras" onClick="countW();"><BR>
+<output id="total"></output><BR>
 
-<input type="text"  ID="frase" ><BR>
-<INPUT TYPE="button" VALUE="Contar las palabras" onClick="countW();">
 
-
-<output id="total"></output>
-
+<input type="text" ID="pali" ><BR>
+    <INPUT TYPE="button" VALUE="Es palidromo?" onClick="frasePalindromo();"
+    ><BR>
+    <output id="res"></output>
+</FORM>
 </body>
 </html>
